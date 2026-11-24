@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>Offside Studio</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="fonts/montserrat/600.css">
+<link rel="stylesheet" href="fonts/montserrat/800.css">
+<link rel="stylesheet" href="fonts/montserrat/900-italic.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header>
+  <div class="brand"><svg viewBox="0 0 74 92" width="20" height="25"><circle cx="10" cy="58" r="10" fill="#fff"/><rect x="30" y="0" width="14" height="92" rx="3" fill="#fff"/><circle cx="64" cy="20" r="10" fill="#E30613"/></svg>
+    <b>OFFSIDE</b> STUDIO</div>
+  <nav><button data-tab="projekty" class="on">Projekty</button><button data-tab="katalog">Katalog</button></nav>
+</header>
+
+<main id="projekty">
+  <aside>
+    <div class="new"><button class="pill red" data-new="reel">+ Nový reel</button><button class="pill" data-new="carousel">+ Nový carousel</button></div>
+    <ul id="list"></ul>
+  </aside>
+  <section id="preview">
+    <div id="empty">Vyber projekt vlevo nebo založ nový reel / carousel.</div>
+    <div id="frameWrap" hidden><iframe id="frame" src="stage.html"></iframe></div>
+    <div id="controls" hidden>
+      <button id="play" class="pill small">▶ Přehrát</button>
+      <input id="scrub" type="range" min="0" max="1000" value="0">
+      <span id="time">0.0 s</span>
+    </div>
+    <div id="slideNav" hidden></div>
+    <audio id="audio"></audio>
+  </section>
+  <section id="editor" hidden>
+    <div class="head">
+      <input id="title" class="title">
+      <div class="row">
+        <button id="rebuild" class="pill small" title="Nový náhodný výběr klubů">↻ Jiné kluby</button>
+        <button id="del" class="pill small ghost">Smazat</button>
+      </div>
+    </div>
+
+    <details open><summary>Scény</summary><div id="items"></div></details>
+
+    <details open id="voiceBox"><summary>Hlas a maskot</summary>
+      <label class="chk"><input type="checkbox" id="mOn"> Maskot Offík</label>
+      <label class="chk"><input type="checkbox" id="mBubble"> Bublina s textem (když není hlas)</label>
+      <label class="chk reelOnly"><input type="checkbox" id="sound"> Zvuk střihů (údery)</label>
+      <div class="reelOnly">
+        <p id="voiceState" class="muted"></p>
+        <div class="row">
+          <button id="say" class="pill small">Náhledový hlas (Zuzana)</button>
+          <label class="pill small file">Nahrát hlas… <input id="voiceFile" type="file" accept="audio/*,video/*" hidden></label>
+          <button id="voiceDel" class="pill small ghost">Bez hlasu</button>
+        </div>
+        <p class="muted small">Puck: v AI Studiu (aistudio.google.com/generate-speech) vlož text níž, Run → Download, a soubor sem nahraj. Titulky a pusa maskota se srovnají samy.</p>
+        <div class="script"><pre id="script"></pre><button id="copyScript" class="pill small">Kopírovat text</button></div>
+      </div>
+    </details>
+
+    <details open><summary>Popisek a hashtagy</summary>
+      <textarea id="capText" rows="8"></textarea>
+      <input id="capTags">
+      <div class="row">
+        <button id="capNext" class="pill small">↻ Jiná varianta</button>
+        <button id="capAi" class="pill small">✨ Přepsat (AI, gemma4)</button>
+        <button id="capCopy" class="pill small">Kopírovat vše</button>
+      </div>
+    </details>
+
+    <div class="render">
+      <button id="render" class="pill red big">Vyrenderovat</button>
+      <div id="progress" hidden><div></div></div>
+      <div id="outputs"></div>
+    </div>
+  </section>
+</main>
+
+<main id="katalog" hidden>
+  <div class="catHead">
+    <div><h2>Katalog</h2><p class="muted" id="catInfo"></p></div>
+    <div class="row">
+      <button id="catRefresh" class="pill">↻ Načíst z offsidestore.cz</button>
+      <label class="pill red file">+ Vlastní produkt (foto) <input id="catFile" type="file" accept="image/*" hidden></label>
+    </div>
+  </div>
+  <div id="catGrid"></div>
+</main>
+
+<dialog id="picker">
+  <h3 id="pickTitle"></h3>
+  <div id="pickList"></div>
+  <p class="muted small">Kluby (nepovinné — jinak se vyberou náhodně):</p>
+  <div id="pickClubs"></div>
+  <label id="pickWordRow" class="small">Zkratka pro „Vlastní zkratka“: <input id="pickWord" value="TATA" maxlength="12"></label>
+  <div class="row"><button id="pickGo" class="pill red">Vytvořit</button><button id="pickCancel" class="pill ghost">Zrušit</button></div>
+</dialog>
+<div id="toast"></div>
+<script type="module" src="local/local-api.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

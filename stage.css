@@ -1,0 +1,60 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #000; overflow: hidden; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: #fff;
+  font-family: "Montserrat", sans-serif; }
+#stage.slide { height: 1350px; }
+.abs { position: absolute; }
+.fill { position: absolute; inset: 0; }
+.it { font-family: "Montserrat"; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.98; }
+.red { color: #E30613; }
+.photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.dim::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.25) 45%, rgba(0,0,0,.85)); }
+
+/* background: grey studio + huge outlined OFFSIDE (like their T-shirt slides) */
+.studio { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 40%, #f2f2f2 0%, #bdbdbd 55%, #2a2a2a 100%); overflow: hidden; }
+.studio .pat { position: absolute; left: -30%; top: -20%; width: 160%; transform: rotate(-28deg); font: 900 italic 360px/0.86 "Montserrat";
+  color: rgba(255,255,255,.35); -webkit-text-stroke: 3px rgba(0,0,0,.06); white-space: nowrap; }
+.studio .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(180deg, transparent, #000); }
+.darkpat { position: absolute; inset: 0; background: #000; overflow: hidden; }
+.darkpat .pat { position: absolute; left: -40%; top: -10%; width: 180%; transform: rotate(-28deg); font: 900 italic 330px/0.86 "Montserrat";
+  color: transparent; -webkit-text-stroke: 3px rgba(255,255,255,.07); white-space: nowrap; }
+
+.logo { position: absolute; left: 54px; top: 64px; width: 74px; height: 92px; }
+.chip { display: inline-block; background: #E30613; color: #fff; font: 800 46px/1 "Montserrat"; padding: 16px 28px; border-radius: 999px; text-transform: uppercase; letter-spacing: .01em; }
+.chip.w { background: #fff; color: #000; }
+
+/* lace band with metal letters */
+.lace { position: absolute; left: 50%; height: 150px; border-radius: 26px; display: flex; align-items: center; justify-content: center; gap: 34px;
+  padding: 0 70px; transform: translateX(-50%); box-shadow: 0 30px 60px rgba(0,0,0,.5), inset 0 -10px 0 rgba(0,0,0,.18), inset 0 8px 0 rgba(255,255,255,.12); }
+.lace::before { content: ""; position: absolute; inset: 0; border-radius: inherit; opacity: .25;
+  background: repeating-linear-gradient(70deg, transparent 0 14px, rgba(0,0,0,.6) 14px 18px, transparent 18px 34px, rgba(255,255,255,.4) 34px 37px); }
+.lace .ch { position: relative; font: 800 190px/1 "Oswald"; background: linear-gradient(180deg, #fff 0%, #d9d9d9 35%, #8d8d8d 55%, #f4f4f4 70%, #a9a9a9 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 6px 4px rgba(0,0,0,.45)); margin-top: -10px; }
+
+/* captions (karaoke) */
+.cap { position: absolute; left: 60px; right: 60px; text-align: center; font: 900 italic 76px/1.08 "Montserrat"; text-transform: uppercase;
+  -webkit-text-stroke: 12px #000; paint-order: stroke fill; letter-spacing: -.01em; }
+.cap span { display: inline-block; padding: 0 10px; border-radius: 14px; margin: 4px 2px; }
+.cap span.on { background: #E30613; -webkit-text-stroke: 0; }
+
+/* mascot + bubble */
+.mascot { position: absolute; }
+.mascot svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 0 #fff) drop-shadow(0 14px 18px rgba(0,0,0,.35)); }
+.mascot.sticker svg { filter: drop-shadow(6px 0 0 #fff) drop-shadow(-6px 0 0 #fff) drop-shadow(0 6px 0 #fff) drop-shadow(0 -6px 0 #fff) drop-shadow(0 14px 18px rgba(0,0,0,.4)); }
+.bubble { position: absolute; background: #fff; color: #000; font: 800 44px/1.15 "Montserrat"; padding: 26px 34px; border-radius: 34px; border: 6px solid #000;
+  max-width: 560px; box-shadow: 0 10px 0 rgba(0,0,0,.25); }
+.bubble::after { content: ""; position: absolute; right: 70px; bottom: -34px; border: 18px solid transparent; border-top: 22px solid #000; border-right-color: #000; }
+.bubble.side::after { right: -40px; bottom: auto; top: 34px; border: 16px solid transparent; border-left: 26px solid #000; }
+.bubble.left::after { right: auto; left: 70px; border-right-color: transparent; border-left-color: #000; }
+
+/* poll / grid rows */
+.row { position: absolute; left: 60px; right: 60px; height: 250px; display: flex; align-items: center; gap: 34px; background: rgba(255,255,255,.06);
+  border: 3px solid rgba(255,255,255,.12); border-radius: 36px; padding: 0 30px; }
+.row .n { width: 130px; height: 130px; border-radius: 30px; background: #E30613; font: 900 italic 96px/130px "Montserrat"; text-align: center; flex: none; }
+.row .th { width: 190px; height: 190px; border-radius: 24px; background-size: cover; background-position: center; flex: none; }
+.row .t { font: 900 italic 64px/1 "Montserrat"; text-transform: uppercase; }
+.row .s { font: 600 34px/1.2 "Montserrat"; opacity: .7; margin-top: 10px; }
+
+.ticket { position: absolute; left: 90px; right: 90px; border: 8px dashed #fff; border-radius: 46px; text-align: center; padding: 70px 40px; }
+.shop { display: inline-flex; align-items: center; gap: 24px; border: 6px solid #E30613; border-radius: 999px; padding: 22px 46px; font: 900 italic 70px/1 "Montserrat"; }
+.shop b { color: #E30613; }
